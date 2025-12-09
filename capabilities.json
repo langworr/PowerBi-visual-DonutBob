@@ -1,0 +1,59 @@
+{
+  "dataRoles": [
+    {
+      "displayName": "Category Data",
+      "name": "category",
+      "kind": "Grouping"
+    },
+    {
+      "displayName": "Measure Data",
+      "name": "measure",
+      "kind": "Measure"
+    }
+  ],
+  "dataViewMappings": [
+    {
+      "categorical": {
+        "categories": {
+          "for": {
+            "in": "category"
+          },
+          "dataReductionAlgorithm": {
+            "top": {}
+          }
+        },
+        "values": {
+          "select": [
+            {
+              "bind": {
+                "to": "measure"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "objects": {
+    "circleCard": {
+      "displayName": "Circle Settings",
+      "properties": {
+        "thickness": { "displayName": "Thickness", "type": { "numeric": true } },
+        "fillColor": { "displayName": "Fill Color", "type": { "fill": { "solid": { "color": true } } } },
+        "fillTransparency": { "displayName": "Fill Transparency (%)", "type": { "numeric": true } }
+      }
+    },
+    "centreCard": {
+      "displayName": "Centre Settings",
+      "properties": {
+        "showCentre": { "displayName": "Show Centre", "type": { "bool": true } },
+        "valueFontColor": { "displayName": "Value Font Color", "type": { "fill": { "solid": { "color": true } } } },
+        "valueFontSize": { "displayName": "Value Font Size", "type": { "numeric": true } },
+        "labelText": { "displayName": "Label Text", "type": { "text": true } },
+        "labelFontColor": { "displayName": "Label Font Color", "type": { "fill": { "solid": { "color": true } } } },
+        "labelFontSize": { "displayName": "Label Font Size", "type": { "numeric": true } }
+      }
+    }
+  },
+  "privileges": []
+}

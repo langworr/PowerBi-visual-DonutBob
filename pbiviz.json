@@ -1,0 +1,26 @@
+{
+    "visual":{
+        "name":"donutBob",
+        "displayName":"donutBob",
+        "guid":"donutBobD54A87B7F09B4044A75E6FCBD3376F15",
+        "visualClassName":"Visual",
+        "version":"1.0.0.0",
+        "description":"Custom Donut Chart",
+        "supportUrl":"example.com",
+        "gitHubUrl":""
+    },
+    "apiVersion":"5.11.0",
+    "author":{
+        "name":"Bob",
+        "email":"bob@example.com"
+    },
+    "assets":{
+        "icon":"assets/icon.png"
+    },
+    "externalJS":[],
+    "style":"style/visual.less",
+    "capabilities":"capabilities.json",
+    "dependencies":null,
+    "stringResources":[],
+    "version":"1.0.0.0"
+}
