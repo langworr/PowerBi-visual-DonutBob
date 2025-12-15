@@ -11,6 +11,12 @@
             "displayNameKey": "Visual_YAxis",
             "name": "Y",
             "kind": "Measure"
+        },
+        {
+            "displayName": "Center Value",
+            "displayNameKey": "Visual_CenterValue",
+            "name": "CenterValue",
+            "kind": "Measure"
         }
     ],
     "dataViewMappings": [
@@ -22,6 +28,9 @@
                     },
                     "Y": {
                         "max": 2
+                    },
+                    "CenterValue": {
+                        "max": 1
                     }
                 }
             ],
@@ -39,6 +48,11 @@
                         {
                             "bind": {
                                 "to": "Y"
+                            }
+                        },
+                        {
+                            "bind": {
+                                "to": "CenterValue"
                             }
                         }
                     ]

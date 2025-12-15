@@ -5,7 +5,7 @@
         "experimentalDecorators": true,
         "target": "es2022",
         "sourceMap": true,
-        "outDir": "./.tmp/build/",
+        "outDir": "./tmp/build/",
         "moduleResolution": "node",
         "declaration": true,
         "lib": [
