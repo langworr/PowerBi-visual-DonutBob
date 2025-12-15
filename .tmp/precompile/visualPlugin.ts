@@ -1,4 +1,4 @@
-import { Visual } from "../../src/visual";
+import { DonutBob } from "../../src/visual";
 import powerbiVisualsApi from "powerbi-visuals-api";
 import IVisualPlugin = powerbiVisualsApi.visuals.plugins.IVisualPlugin;
 import VisualConstructorOptions = powerbiVisualsApi.extensibility.visual.VisualConstructorOptions;
@@ -8,11 +8,11 @@ var powerbi: any = window[powerbiKey];
 var donutBobD54A87B7F09B4044A75E6FCBD3376F15: IVisualPlugin = {
     name: 'donutBobD54A87B7F09B4044A75E6FCBD3376F15',
     displayName: 'donutBob',
-    class: 'Visual',
+    class: 'DonutBob',
     apiVersion: '5.11.0',
     create: (options?: VisualConstructorOptions) => {
-        if (Visual) {
-            return new Visual(options);
+        if (DonutBob) {
+            return new DonutBob(options);
         }
         throw 'Visual instance not found';
     },
