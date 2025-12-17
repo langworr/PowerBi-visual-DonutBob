@@ -185,10 +185,18 @@ class CenterLabelCardSettings extends BaseFontCardSettings {
         value: { value: "rgb(119, 119, 119)" },
     });
 
+    centerText = new formattingSettings.TextInput({
+        name: "centerText",
+        displayName: "Center Text",
+        displayNameKey: "Visual_CenterText",
+        value: "",
+        placeholder: "Center Label",
+    });
+
     name: string = DonutBobObjectNames.CenterLabel.name;
     displayName: string = DonutBobObjectNames.CenterLabel.displayName;
     displayNameKey: string = DonutBobObjectNames.CenterLabel.displayNameKey;
-    slices = [this.font, this.color];
+    slices = [this.font, this.color, this.centerText];
 }
 
 class LabelsOptionsSettingsGroup extends BaseFontCardSettings {

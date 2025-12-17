@@ -173,14 +173,6 @@ export class DataRenderService {
     }
 
     public drawCenterText(mainGroupElement: d3Selection<SVGGElement, null, HTMLElement, null>): void {
-        const centerTextProperties: TextProperties = {
-            text: this.data.centerText,
-            fontFamily: this.settings.centerLabel.font.fontFamily.value,
-            fontSize: PixelConverter.toString(this.settings.centerLabel.font.fontSize.value),
-            fontWeight: this.settings.centerLabel.font.bold.value ? "bold" : "normal",
-            fontStyle: this.settings.centerLabel.font.italic.value ? "italic" : "normal",
-        };
-
         let centerText: d3Selection<SVGTextElement, null, HTMLElement, null> = mainGroupElement.select<SVGTextElement>(DataRenderService.CenterLabelClass.selectorName);
 
         if (centerText.empty()) {
@@ -189,16 +181,37 @@ export class DataRenderService {
 
         centerText
             .style("line-height", 1)
-            .style("font-weight", centerTextProperties.fontWeight)
             .style("font-size", this.settings.centerLabel.font.fontSize.value)
             .style("font-family", this.settings.centerLabel.font.fontFamily.value || dataLabelUtils.StandardFontFamily)
             .style("font-weight", this.settings.centerLabel.font.bold.value ? "bold" : "normal")
             .style("font-style", this.settings.centerLabel.font.italic.value ? "italic" : "normal")
             .style("text-decoration", this.settings.centerLabel.font.underline.value ? "underline" : "none")
             .style("fill", this.settings.centerLabel.color.value.value)
-            .attr("dy", "0.35em")
-            .attr("text-anchor", "middle")
-            .text(textMeasurementService.getTailoredTextOrDefault(centerTextProperties, this.innerRadius * DataRenderService.CenterTextFontWidthCoefficient));
+            .attr("text-anchor", "middle");
+
+        centerText.text(null);
+
+        const maxWidth = this.innerRadius * DataRenderService.CenterTextFontWidthCoefficient;
+
+        this.data.centerText.forEach((lineContent: string, index: number) => {
+            
+            const lineProperties: TextProperties = {
+                text: lineContent,
+                fontFamily: this.settings.centerLabel.font.fontFamily.value,
+                fontSize: PixelConverter.toString(this.settings.centerLabel.font.fontSize.value),
+                fontWeight: this.settings.centerLabel.font.bold.value ? "bold" : "normal",
+                fontStyle: this.settings.centerLabel.font.italic.value ? "italic" : "normal",
+            };
+
+            const tailoredText = textMeasurementService.getTailoredTextOrDefault(lineProperties, maxWidth);
+
+            centerText.append("tspan")
+                .attr("x", 0)
+                .attr("dy", index === 0 
+                    ? (this.data.centerText.length > 1 ? "-0.2em" : "0.35em") 
+                    : "1.2em") 
+                .text(tailoredText);
+        });
 
         this.applyOnObjectStylesToCenterLabel(centerText);
     }

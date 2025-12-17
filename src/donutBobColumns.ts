@@ -60,10 +60,12 @@ export class DonutBobColumns<T> {
         return {
             Category: categories.find(x => x.source?.roles["Category"]),
             Y: values.filter(x => x.source?.roles["Y"]),
+            CenterValue: values.find(x => x.source?.roles["CenterValue"]),
         }
     }
 
     // Data Roles
     public Category: T = null;
     public Y: T = null;
+    public CenterValue: T = null;
 }

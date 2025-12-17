@@ -56,7 +56,7 @@ export interface DonutBobData {
     hasHighlights: boolean;
     legendData: LegendData;
     labelFormatter: IValueFormatter;
-    centerText: string;
+    centerText: string[];
 }
 
 export interface DonutDataPoint extends SelectableDataPoint {

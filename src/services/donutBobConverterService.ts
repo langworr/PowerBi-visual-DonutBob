@@ -58,8 +58,16 @@ import LegendData = legendInterfaces.LegendData;
 const minStrokeWidth: number = 0;
 const maxStrokeWidth: number = 3;
 
-export type CategoricalColumns = { Category: powerbi.DataViewCategoryColumn; Y: powerbi.DataViewValueColumn[]; }
-export type CategoricalValueColumns = { Category: powerbi.PrimitiveValue[]; Y: powerbi.PrimitiveValue[]; };
+export type CategoricalColumns = {
+    Category: powerbi.DataViewCategoryColumn;
+    Y: powerbi.DataViewValueColumn[];
+    CenterValue?: powerbi.DataViewValueColumn;
+};
+export type CategoricalValueColumns = {
+    Category: powerbi.PrimitiveValue[];
+    Y: powerbi.PrimitiveValue[];
+    CenterValue?: powerbi.PrimitiveValue[];
+};
 
 export class DonutBobConverterService {
     private static PiesPropertyIdentifier = {
@@ -240,6 +248,39 @@ export class DonutBobConverterService {
         return paletteColor;
     }
 
+// Modifica il tipo di ritorno da string a string[]
+    private getCenterText(): string[] {
+        const parts: string[] = [];
+
+        // 1. Titolo custom (CenterLabel)
+        if (this.settings.centerLabel.show && this.settings.centerLabel.centerText?.value?.trim().length > 0) {
+            parts.push(this.settings.centerLabel.centerText.value.trim());
+        }
+
+        // 2. Valore custom (CenterValue)
+        if (this.categoricalValueColumns.CenterValue && this.categoricalValueColumns.CenterValue.length > 0) {
+            const rawVal = this.categoricalValueColumns.CenterValue[0];
+            const numVal = rawVal == null || rawVal === "" ? 0 : Number(rawVal);
+
+            // formatter automatico con unità di misura e decimali
+            const formatter = valueFormatter.create({
+                format: valueFormatter.getFormatStringByColumn(this.categoricalColumns.CenterValue?.source, true),
+                precision: this.settings.detailLabels.labelsValuesGroup.precision.value,
+                value: numVal
+            });
+
+            parts.push(formatter.format(numVal));
+        }
+
+        // 3. Fallback: se non c’è nulla, usa il nome della categoria
+        if (parts.length === 0 && this.categoricalColumns.Category) {
+            parts.push(this.categoricalColumns.Category.source.displayName);
+        }
+
+        // 4. Restituisci l'array puro, SENZA .join(" ")
+        return parts;
+    }
+
     public getConvertedData(localizationManager: ILocalizationManager): DonutBobData {
         const categoryValue = this.categoricalValueColumns.Category,
             category: DataViewCategoryColumn = this.categoricalColumns.Category,
@@ -353,8 +394,10 @@ export class DonutBobConverterService {
                 legendData: this.legendData,
                 highlightedDataPoints: this.highlightedDataPoints,
                 labelFormatter: this.labelFormatter,
-                centerText: category.source.displayName
+                // centerText: category.source.displayName
+                centerText: this.getCenterText()
             }
             : null;
     }
 }
+// asendia//

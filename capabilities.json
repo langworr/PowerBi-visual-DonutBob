@@ -193,6 +193,12 @@
                     "type": {
                         "bool": true
                     }
+                },
+                "centerText": {
+                    "type": {
+                        "text": true
+                    },
+                    "suppressFormatPainterCopy": true
                 }
             }
         },
