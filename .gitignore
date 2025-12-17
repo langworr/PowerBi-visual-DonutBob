@@ -5,3 +5,4 @@ dist/
 tmp/
 webpack.statistics.**.html
 .tmp/
+webpack.statistics.prod.html

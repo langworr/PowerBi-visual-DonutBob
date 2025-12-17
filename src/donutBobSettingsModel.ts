@@ -44,6 +44,7 @@ interface ILocalizedFlagsSelectionItemMember extends ILocalizedItemMember {
 }
 
 export const DonutBobObjectNames = {
+    Shape: { name: "shape", displayName: "Shape", displayNameKey: "Visual_Shape" },
     Legend: { name: "legend", displayName: "Legend", displayNameKey: "Visual_Legend" },
     LegendTitle: { name: "legendTitle", displayName: "Legend title", displayNameKey: "Visual_LegendTitle" },
     CenterLabel: { name: "label", displayName: "Center Label", displayNameKey: "Visual_CenterLabel" },
@@ -306,6 +307,20 @@ export class PiesCardSettings extends formattingSettings.SimpleCard {
     }
 }
 
+export class ShapeCardSettings extends formattingSettings.SimpleCard {
+    asterType = new formattingSettings.ToggleSwitch({
+        name: "asterType",
+        displayName: "Show as Aster",
+        displayNameKey: "Visual_ShowAsAster",
+        value: false,
+    });
+
+    name: string = DonutBobObjectNames.Shape.name;
+    displayName: string = DonutBobObjectNames.Shape.displayName;
+    displayNameKey: string = DonutBobObjectNames.Shape.displayNameKey;
+    slices = [this.asterType];
+}
+
 export class OuterLineCardSettings extends BaseFontCardSettings {
     public thicknessMin: number = 0.1;
     public thicknessMax: number = 25;
@@ -386,6 +401,7 @@ export class DonutBobSettingsModel extends Model {
     detailLabels = new LabelsCardSettings();
     pies = new PiesCardSettings();
     outerLine = new OuterLineCardSettings();
+    shape = new ShapeCardSettings();
 
     cards = [
         this.legend,
@@ -393,6 +409,7 @@ export class DonutBobSettingsModel extends Model {
         this.detailLabels,
         this.pies,
         this.outerLine,
+        this.shape
     ];
 
     public parse(colorPalette: ISandboxExtendedColorPalette, title: string) {
