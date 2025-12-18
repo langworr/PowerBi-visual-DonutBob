@@ -153,9 +153,10 @@ export class DataRenderService {
         this.viewportRadius = Math.min(this.layout.viewportIn.width, this.layout.viewportIn.height) / 2;
         this.tooltipServiceWrapper = tooltipServiceWrapper;
 
-        this.innerRadius = 0.3 * (this.settings.detailLabels.show.value
-            ? this.viewportRadius * DataRenderService.DonutRadiusRatio
-            : this.viewportRadius);
+        // this.innerRadius = 0.3 * (this.settings.detailLabels.show.value
+        //     ? this.viewportRadius * DataRenderService.DonutRadiusRatio
+        //     : this.viewportRadius);
+        this.innerRadius = this.calcInnerRadius(this.settings.detailLabels.show.value, this.viewportRadius, DataRenderService.DonutRadiusRatio);
         const showOuterLine: boolean = settings.outerLine.show.value;  
         if (showOuterLine) {
             this.ticksOptions = this.calcTickOptions(this.maxHeight);
@@ -223,7 +224,6 @@ export class DataRenderService {
             .attr(SubSelectableTypeAttribute, SubSelectionStylesType.Text)
             .classed(HtmlSubSelectableClass, this.formatMode && this.settings.centerLabel.show.value);
     }
-
 
     public cleanCenterText(mainGroupElement: d3Selection<SVGGElement, null, HTMLElement, null>): void {
         mainGroupElement.select<SVGTextElement>(DataRenderService.CenterLabelClass.selectorName).remove();
@@ -447,6 +447,17 @@ export class DataRenderService {
         element.selectAll(DataRenderService.OuterCircleBorder.selectorName).remove();
         element.selectAll(DataRenderService.InnerCircleBorder.selectorName).remove();
         this.cleanGrid(element);
+    }
+
+    private calcInnerRadius(detailLabels: boolean, viewportRadius: number, DonutRadiusRatio: number): number {
+        let innerRadius: number = 0;
+        let userRatio: number = this.settings.shape.innerRadius.value / 100;
+
+        if (detailLabels) {
+            return viewportRadius * DonutRadiusRatio * userRatio;
+        } else {
+            return viewportRadius * userRatio;
+        }
     }
 
     private calcTickOptions(value: number): CircleTicksOptions {

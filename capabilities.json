@@ -67,7 +67,12 @@
                     "type": {
                         "bool": true
                     }
-                }
+                },
+                "innerRadius": {
+                    "type": {
+                        "numeric": true
+                    }
+                }   
             }
         },
         "legend": {
