@@ -281,11 +281,15 @@ export class DonutBobConverterService {
         return parts;
     }
 
+    // BOB
     public getConvertedData(localizationManager: ILocalizationManager): DonutBobData {
         const categoryValue = this.categoricalValueColumns.Category,
             category: DataViewCategoryColumn = this.categoricalColumns.Category,
             values: number[] = <number[]>this.categoricalColumns.Y[0].values,
             categoricalColumns: CategoricalColumns = this.categoricalColumns;
+
+        const isAsterMode = this.settings.shape.asterType.value;
+        const yCols = categoricalColumns.Y;
 
         for (let i = 0; i < categoryValue.length; i++) {
             const formattedCategoryValue: PrimitiveValue = categoryValue[i];
@@ -311,7 +315,13 @@ export class DonutBobConverterService {
             const fillColor = this.colorHelper.getHighContrastColor("background", effectiveColor);
             const strokeColor = this.colorHelper.getHighContrastColor("foreground", fillColor);
             const strokeWidth = this.colorHelper.isHighContrast ? maxStrokeWidth : minStrokeWidth;
-            const sliceWidth = Math.max(0, categoricalColumns.Y.length > 1 ? <number>categoricalColumns.Y[1].values[i] : 1);
+            // const sliceWidth = Math.max(0, categoricalColumns.Y.length > 1 ? <number>categoricalColumns.Y[1].values[i] : 1);
+
+            const rawWidth = isAsterMode 
+                ? (yCols.length > 1 ? <number>yCols[1].values[i] : 1)
+                : <number>yCols[0].values[i];
+
+            const sliceWidth = Math.max(0, rawWidth || 0);
 
             const selectionId: ISelectionId = this.visualHost.createSelectionIdBuilder()
                 .withCategory(category, i)
@@ -366,8 +376,15 @@ export class DonutBobConverterService {
                     tooltipInfo = this.buildOneMeasureTooltip(formattedCategoryValue, currentValue, localizationManager);
                 }
 
+                // const height: number = highlightValueIsNotNull ? highlightValues[i] : null;
+                // const width: number = Math.max(0, (categoricalColumns.Y.length > 1 && secondHighlightValue !== null) ? secondHighlightValue : sliceWidth)
+                const highlightRawWidth = isAsterMode
+                    ? ((yCols.length > 1 && secondHighlightValue !== null) ? secondHighlightValue : sliceWidth)
+                    : (highlightValueIsNotNull ? <number>highlightValues[i] : 0);
+
                 const height: number = highlightValueIsNotNull ? highlightValues[i] : null;
-                const width: number = Math.max(0, (categoricalColumns.Y.length > 1 && secondHighlightValue !== null) ? secondHighlightValue : sliceWidth)
+                const width: number = Math.max(0, highlightRawWidth);
+
                 const highlightLabelText = this.getLabelText(formattedCategoryValue, currentValue);
                 this.highlightedDataPoints.push({
                     sliceHeight: height,

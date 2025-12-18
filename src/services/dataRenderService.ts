@@ -153,6 +153,7 @@ export class DataRenderService {
         this.viewportRadius = Math.min(this.layout.viewportIn.width, this.layout.viewportIn.height) / 2;
         this.tooltipServiceWrapper = tooltipServiceWrapper;
 
+        // BOB inner radius
         this.innerRadius = 0.3 * (this.settings.detailLabels.show.value
             ? this.viewportRadius * DataRenderService.DonutRadiusRatio
             : this.viewportRadius);
@@ -223,7 +224,6 @@ export class DataRenderService {
             .attr(SubSelectableTypeAttribute, SubSelectionStylesType.Text)
             .classed(HtmlSubSelectableClass, this.formatMode && this.settings.centerLabel.show.value);
     }
-
 
     public cleanCenterText(mainGroupElement: d3Selection<SVGGElement, null, HTMLElement, null>): void {
         mainGroupElement.select<SVGTextElement>(DataRenderService.CenterLabelClass.selectorName).remove();
@@ -565,6 +565,7 @@ export class DataRenderService {
         return Math.max(heightIsLabelsOn, this.innerRadius);
     }
 
+    // BOB
     private getArcSvg(innerRadius: number = this.innerRadius, viewportRadius: number = this.viewportRadius, maxHeight: number = this.maxHeight): d3Arc<DataRenderService, d3PieArcDatum<DonutDataPoint>> {
         return d3CreateArc<DataRenderService, d3PieArcDatum<DonutDataPoint>>()
             .innerRadius(innerRadius)
@@ -579,7 +580,11 @@ export class DataRenderService {
                         ? arcDescriptor.data.sliceHeight
                         : 1;
 
-                    height = radius * sliceHeight / maxHeight;
+                    if (this.settings.shape.asterType.value) {
+                        height = radius * sliceHeight / maxHeight;
+                    } else {
+                        height = radius;
+                    }
                 }
 
                 // The chart should shrink if data labels are on
@@ -600,11 +605,11 @@ export class DataRenderService {
         return Math.max(height, this.innerRadius);
     }
 
+    // BOB Labels
     private labelRadCalc(d: DonutDataPoint) {
         const height: number = this.viewportRadius * (d && !isNaN(d.sliceHeight) ? d.sliceHeight : 1) / this.maxHeight + this.innerRadius;
         return Math.max(height, this.innerRadius);
     }
-
 
     public renderLabels(labelsElement: d3Selection<SVGGElement, null, HTMLElement, null>, isHighlight: boolean) {
         const dataPoints: d3DonutDataPoint[] = isHighlight ? this.highlightedDataPoints : this.dataPoints;

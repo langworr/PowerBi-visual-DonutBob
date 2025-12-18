@@ -312,7 +312,7 @@ export class ShapeCardSettings extends formattingSettings.SimpleCard {
         name: "asterType",
         displayName: "Show as Aster",
         displayNameKey: "Visual_ShowAsAster",
-        value: false,
+        value: true,
     });
 
     name: string = DonutBobObjectNames.Shape.name;
