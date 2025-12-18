@@ -3,7 +3,7 @@
         "name":"donutBob",
         "displayName":"donutBob",
         "guid":"donutBobD54A87B7F09B4044A75E6FCBD3376F15",
-        "visualClassName":"Visual",
+        "visualClassName":"DonutBob",
         "version":"1.0.0.0",
         "description":"Custom Donut Chart",
         "supportUrl":"example.com",

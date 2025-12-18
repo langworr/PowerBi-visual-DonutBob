@@ -1,59 +1,432 @@
 {
-  "dataRoles": [
-    {
-      "displayName": "Category Data",
-      "name": "category",
-      "kind": "Grouping"
-    },
-    {
-      "displayName": "Measure Data",
-      "name": "measure",
-      "kind": "Measure"
-    }
-  ],
-  "dataViewMappings": [
-    {
-      "categorical": {
-        "categories": {
-          "for": {
-            "in": "category"
-          },
-          "dataReductionAlgorithm": {
-            "top": {}
-          }
+    "dataRoles": [
+        {
+            "displayName": "Category",
+            "displayNameKey": "Visual_Category",
+            "name": "Category",
+            "kind": "Grouping"
         },
-        "values": {
-          "select": [
-            {
-              "bind": {
-                "to": "measure"
-              }
-            }
-          ]
+        {
+            "displayName": "Y Axis",
+            "displayNameKey": "Visual_YAxis",
+            "name": "Y",
+            "kind": "Measure"
+        },
+        {
+            "displayName": "Center Value",
+            "displayNameKey": "Visual_CenterValue",
+            "name": "CenterValue",
+            "kind": "Measure"
         }
-      }
-    }
-  ],
-  "objects": {
-    "circleCard": {
-      "displayName": "Circle Settings",
-      "properties": {
-        "thickness": { "displayName": "Thickness", "type": { "numeric": true } },
-        "fillColor": { "displayName": "Fill Color", "type": { "fill": { "solid": { "color": true } } } },
-        "fillTransparency": { "displayName": "Fill Transparency (%)", "type": { "numeric": true } }
-      }
+    ],
+    "dataViewMappings": [
+        {
+            "conditions": [
+                {
+                    "Category": {
+                        "max": 1
+                    },
+                    "Y": {
+                        "max": 2
+                    },
+                    "CenterValue": {
+                        "max": 1
+                    }
+                }
+            ],
+            "categorical": {
+                "categories": {
+                    "for": {
+                        "in": "Category"
+                    },
+                    "dataReductionAlgorithm": {
+                        "top": {}
+                    }
+                },
+                "values": {
+                    "select": [
+                        {
+                            "bind": {
+                                "to": "Y"
+                            }
+                        },
+                        {
+                            "bind": {
+                                "to": "CenterValue"
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "objects": {
+        "shape": {
+            "properties": {
+                "asterType": {
+                    "type": {
+                        "bool": true
+                    }
+                },
+                "innerRadius": {
+                    "type": {
+                        "numeric": true
+                    }
+                }   
+            }
+        },
+        "legend": {
+            "properties": {
+                "show": {
+                    "type": {
+                        "bool": true
+                    }
+                },
+                "position": {
+                    "type": {
+                        "enumeration": [
+                            {
+                                "value": "Top"
+                            },
+                            {
+                                "value": "Bottom"
+                            },
+                            {
+                                "value": "Left"
+                            },
+                            {
+                                "value": "Right"
+                            },
+                            {
+                                "value": "TopCenter"
+                            },
+                            {
+                                "value": "BottomCenter"
+                            },
+                            {
+                                "value": "LeftCenter"
+                            },
+                            {
+                                "value": "RightCenter"
+                            }
+                        ]
+                    }
+                },
+                "showTitle": {
+                    "type": {
+                        "bool": true
+                    }
+                },
+                "titleText": {
+                    "type": {
+                        "text": true
+                    },
+                    "suppressFormatPainterCopy": true
+                },
+                "labelColor": {
+                    "type": {
+                        "fill": {
+                            "solid": {
+                                "color": true
+                            }
+                        }
+                    }
+                },
+                "fontSize": {
+                    "type": {
+                        "formatting": {
+                            "fontSize": true
+                        }
+                    }
+                },
+                "fontFamily": {
+                    "type": {
+                        "formatting": {
+                            "fontFamily": true
+                        }
+                    }
+                },
+                "fontBold": {
+                    "type": {
+                        "bool": true
+                    }
+                },
+                "fontItalic": {
+                    "type": {
+                        "bool": true
+                    }
+                },
+                "fontUnderline": {
+                    "type": {
+                        "bool": true
+                    }
+                }
+            }
+        },
+        "label": {
+            "properties": {
+                "show": {
+                    "type": {
+                        "bool": true
+                    }
+                },
+                "color": {
+                    "type": {
+                        "fill": {
+                            "solid": {
+                                "color": true
+                            }
+                        }
+                    }
+                },
+                "fontSize": {
+                    "type": {
+                        "formatting": {
+                            "fontSize": true
+                        }
+                    }
+                },
+                "fontFamily": {
+                    "type": {
+                        "formatting": {
+                            "fontFamily": true
+                        }
+                    }
+                },
+                "fontBold": {
+                    "type": {
+                        "bool": true
+                    }
+                },
+                "fontItalic": {
+                    "type": {
+                        "bool": true
+                    }
+                },
+                "fontUnderline": {
+                    "type": {
+                        "bool": true
+                    }
+                },
+                "centerText": {
+                    "type": {
+                        "text": true
+                    },
+                    "suppressFormatPainterCopy": true
+                }
+            }
+        },
+        "labels": {
+            "properties": {
+                "show": {
+                    "type": {
+                        "bool": true
+                    }
+                },
+                "color": {
+                    "type": {
+                        "fill": {
+                            "solid": {
+                                "color": true
+                            }
+                        }
+                    }
+                },
+                "displayUnits": {
+                    "type": {
+                        "formatting": {
+                            "labelDisplayUnits": true
+                        }
+                    }
+                },
+                "precision": {
+                    "placeHolderText": "Auto",
+                    "type": {
+                        "numeric": true
+                    }
+                },
+                "position": {
+                    "type": {
+                        "enumeration": [
+                            {
+                                "value": "Inside"
+                            },
+                            {
+                                "value": "Outside"
+                            }
+                        ]
+                    }
+                },
+                "showCategory": {
+                    "type": {
+                        "bool": true
+                    }
+                },
+                "showDataValue": {
+                    "type": {
+                        "bool": true
+                    }
+                },
+                "showPercentOfTotal": {
+                    "type": {
+                        "bool": true
+                    }
+                },
+                "detailLabelsContent": {
+                    "type": {
+                        "enumeration": []
+                    }
+                },
+                "fontSize": {
+                    "type": {
+                        "formatting": {
+                            "fontSize": true
+                        }
+                    }
+                },
+                "fontFamily": {
+                    "type": {
+                        "formatting": {
+                            "fontFamily": true
+                        }
+                    }
+                },
+                "fontBold": {
+                    "type": {
+                        "bool": true
+                    }
+                },
+                "fontItalic": {
+                    "type": {
+                        "bool": true
+                    }
+                },
+                "fontUnderline": {
+                    "type": {
+                        "bool": true
+                    }
+                }
+            }
+        },
+        "pies": {
+            "properties": {
+                "useConditionalFormatting": {
+                    "type": {
+                        "bool": true
+                    }
+                },
+                "conditionalColor": {
+                    "type": {
+                        "fill": {
+                            "solid": {
+                                "color": true
+                            }
+                        }
+                    }
+                },
+                "fill": {
+                    "type": {
+                        "fill": {
+                            "solid": {
+                                "color": true
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "outerLine": {
+            "properties": {
+                "show": {
+                    "type": {
+                        "bool": true
+                    }
+                },
+                "color": {
+                    "type": {
+                        "fill": {
+                            "solid": {
+                                "color": true
+                            }
+                        }
+                    }
+                },
+                "thickness": {
+                    "type": {
+                        "numeric": true
+                    }
+                },
+                "showGrid": {
+                    "type": {
+                        "bool": true
+                    }
+                },
+                "showGridTicksValues": {
+                    "type": {
+                        "bool": true
+                    }
+                },
+                "showStraightLines": {
+                    "type": {
+                        "bool": true
+                    }
+                },
+                "textColor": {
+                    "type": {
+                        "fill": {
+                            "solid": {
+                                "color": true
+                            }
+                        }
+                    }
+                },
+                "fontSize": {
+                    "type": {
+                        "formatting": {
+                            "fontSize": true
+                        }
+                    }
+                },
+                "fontFamily": {
+                    "type": {
+                        "formatting": {
+                            "fontFamily": true
+                        }
+                    }
+                },
+                "fontBold": {
+                    "type": {
+                        "bool": true
+                    }
+                },
+                "fontItalic": {
+                    "type": {
+                        "bool": true
+                    }
+                },
+                "fontUnderline": {
+                    "type": {
+                        "bool": true
+                    }
+                }
+            }
+        }
     },
-    "centreCard": {
-      "displayName": "Centre Settings",
-      "properties": {
-        "showCentre": { "displayName": "Show Centre", "type": { "bool": true } },
-        "valueFontColor": { "displayName": "Value Font Color", "type": { "fill": { "solid": { "color": true } } } },
-        "valueFontSize": { "displayName": "Value Font Size", "type": { "numeric": true } },
-        "labelText": { "displayName": "Label Text", "type": { "text": true } },
-        "labelFontColor": { "displayName": "Label Font Color", "type": { "fill": { "solid": { "color": true } } } },
-        "labelFontSize": { "displayName": "Label Font Size", "type": { "numeric": true } }
-      }
-    }
-  },
-  "privileges": []
+    "sorting": {
+        "default": {}
+    },
+    "tooltips": {
+        "supportedTypes": {
+            "default": true,
+            "canvas": true
+        },
+        "roles": [
+            "tooltips"
+        ]
+    },
+    "supportsHighlight": true,
+    "supportsKeyboardFocus": true,
+    "supportsOnObjectFormatting": true,
+    "enablePointerEventsFormatMode": true,
+    "privileges": []
 }

@@ -1,6 +1,7 @@
 node_modules/
 dist/
 .vscode/
-.tmp/
-webpack*
+.vscode/
 tmp/
+webpack.statistics.**.html
+.tmp/
