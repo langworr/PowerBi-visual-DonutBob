@@ -315,10 +315,21 @@ export class ShapeCardSettings extends formattingSettings.SimpleCard {
         value: true,
     });
 
+    innerRadius = new formattingSettings.Slider({
+        name: "innerRadius",
+        displayName: "Inner Radius",
+        displayNameKey: "Visual_InnerRadius",
+        value: 1,
+        options: {
+            minValue: { value: 1, type: ValidatorType.Min },
+            maxValue: { value: 100, type: ValidatorType.Max },
+        }
+    });
+
     name: string = DonutBobObjectNames.Shape.name;
     displayName: string = DonutBobObjectNames.Shape.displayName;
     displayNameKey: string = DonutBobObjectNames.Shape.displayNameKey;
-    slices = [this.asterType];
+    slices = [this.asterType, this.innerRadius];
 }
 
 export class OuterLineCardSettings extends BaseFontCardSettings {
