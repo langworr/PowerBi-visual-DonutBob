@@ -59,5 +59,9 @@
     "Visual_UseConditionalFormatting": "Use Conditional Formatting",
     "Visual_Value": "Value",
     "Visual_Values": "Values",
-    "Visual_YAxis": "Y Axis"
+    "Visual_YAxis": "Y Axis",
+    "Visual_CenterText": "Center Text",
+    "Visual_Shape": "Shape",
+    "Visual_ShowAsAster": "Show as Aster",
+    "Visual_InnerRadius": "Inner Radius"
 }

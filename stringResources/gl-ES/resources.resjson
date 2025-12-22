@@ -59,5 +59,7 @@
   "Visual_UseConditionalFormatting": "Usar formato condicional",
   "Visual_Value": "Valor",
   "Visual_Values": "Valores",
-  "Visual_YAxis": "Eixe Y"
+  "Visual_YAxis": "Eixe Y",
+  "Visual_CenterText": "Texto central",
+  "Visual_Shape": "Forma"
 }

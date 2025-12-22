@@ -59,5 +59,7 @@
   "Visual_UseConditionalFormatting": "Bruk betinget formatering",
   "Visual_Value": "Verdi",
   "Visual_Values": "Verdier",
-  "Visual_YAxis": "Y-akse"
+  "Visual_YAxis": "Y-akse",
+  "Visual_CenterText": "Sentrertekst",
+  "Visual_Shape": "Form"
 }

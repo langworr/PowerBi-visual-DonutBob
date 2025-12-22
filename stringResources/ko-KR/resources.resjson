@@ -59,5 +59,7 @@
   "Visual_UseConditionalFormatting": "조건부 서식 사용",
   "Visual_Value": "값",
   "Visual_Values": "값",
-  "Visual_YAxis": "Y축"
+  "Visual_YAxis": "Y축",
+  "Visual_CenterText": "가운데 텍스트",
+  "Visual_Shape": "모양"
 }

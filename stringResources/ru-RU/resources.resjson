@@ -59,5 +59,7 @@
   "Visual_UseConditionalFormatting": "Использовать условное форматирование",
   "Visual_Value": "Значение",
   "Visual_Values": "Значения",
-  "Visual_YAxis": "Ось Y"
+  "Visual_YAxis": "Ось Y",
+  "Visual_CenterText": "Текст в центре",
+  "Visual_Shape": "Форма"
 }

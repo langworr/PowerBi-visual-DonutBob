@@ -59,5 +59,7 @@
   "Visual_UseConditionalFormatting": "استخدام التنسيق الشرطي",
   "Visual_Value": "القيمة",
   "Visual_Values": "القيم",
-  "Visual_YAxis": "محور ص"
+  "Visual_YAxis": "محور ص",
+  "Visual_CenterText": "نص الوسط",
+  "Visual_Shape": "الشكل"
 }

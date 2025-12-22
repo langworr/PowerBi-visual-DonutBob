@@ -59,5 +59,9 @@
   "Visual_UseConditionalFormatting": "Usar el formato condicional",
   "Visual_Value": "Valor",
   "Visual_Values": "Valores",
-  "Visual_YAxis": "Eje Y"
+  "Visual_YAxis": "Eje Y",
+  "Visual_CenterText": "Texto central",
+  "Visual_Shape": "Forma",
+  "Visual_ShowAsAster": "Modo astro",
+  "Visual_InnerRadius": "Radio Interior"
 }

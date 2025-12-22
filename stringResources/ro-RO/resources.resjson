@@ -59,5 +59,7 @@
   "Visual_UseConditionalFormatting": "Utilizați formatarea condiționată",
   "Visual_Value": "Valoare",
   "Visual_Values": "Valori",
-  "Visual_YAxis": "Axa Y"
+  "Visual_YAxis": "Axa Y",
+  "Visual_CenterText": "Text centrat",
+  "Visual_Shape": "Formă"
 }

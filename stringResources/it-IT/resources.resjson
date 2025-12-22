@@ -60,5 +60,8 @@
   "Visual_Value": "Valore",
   "Visual_Values": "Valori",
   "Visual_YAxis": "Asse Y",
-  "Visual_CenterText": "Testo centrale"
+  "Visual_CenterText": "Testo centrale",
+  "Visual_Shape": "Forma",
+  "Visual_ShowAsAster": "Modalità astro",
+  "Visual_InnerRadius": "Raggio interno"
 }

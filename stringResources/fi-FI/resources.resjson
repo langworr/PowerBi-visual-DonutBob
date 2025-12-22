@@ -59,5 +59,7 @@
   "Visual_UseConditionalFormatting": "Käytä ehdollista muotoilua",
   "Visual_Value": "Arvo",
   "Visual_Values": "Arvot",
-  "Visual_YAxis": "Y-akseli"
+  "Visual_YAxis": "Y-akseli",
+  "Visual_CenterText": "Keskusteksti",
+  "Visual_Shape": "Muoto"
 }

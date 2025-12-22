@@ -68,6 +68,12 @@ Avvia il server di sviluppo:
 pbiviz start
 ```
 
-Autore: langworr
+## TODO
+
+- Adjust all default colors and font size values
+- Colori di default che prendano quello del tema
+- Check Zero as Blank
+
+Autore: Roberto Donaglia
 
 Licenza: MIT

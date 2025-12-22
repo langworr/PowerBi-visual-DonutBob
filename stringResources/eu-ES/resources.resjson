@@ -59,5 +59,7 @@
   "Visual_UseConditionalFormatting": "Erabili baldintzapeko formatua",
   "Visual_Value": "Balioa",
   "Visual_Values": "Balioak",
-  "Visual_YAxis": "Y ardatza"
+  "Visual_YAxis": "Y ardatza",
+  "Visual_CenterText": "Erdiko testua",
+  "Visual_Shape": "Forma"
 }

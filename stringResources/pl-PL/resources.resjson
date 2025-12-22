@@ -59,5 +59,7 @@
   "Visual_UseConditionalFormatting": "Użyj formatowania warunkowego",
   "Visual_Value": "Wartość",
   "Visual_Values": "Wartości",
-  "Visual_YAxis": "Oś Y"
+  "Visual_YAxis": "Oś Y",
+  "Visual_CenterText": "Wyśrodkuj tekst",
+  "Visual_Shape": "Kształt"
 }

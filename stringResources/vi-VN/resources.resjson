@@ -59,5 +59,7 @@
   "Visual_UseConditionalFormatting": "Sử dụng định dạng có điều kiện",
   "Visual_Value": "Giá trị",
   "Visual_Values": "Giá trị",
-  "Visual_YAxis": "Trục Y"
+  "Visual_YAxis": "Trục Y",
+  "Visual_CenterTextSize": "Kích thước Văn bản ở giữa",
+  "Visual_Shape": "Hình dạng"
 }

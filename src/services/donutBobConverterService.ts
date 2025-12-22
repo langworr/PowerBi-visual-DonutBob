@@ -258,7 +258,8 @@ export class DonutBobConverterService {
         }
 
         // 2. Valore custom (CenterValue)
-        if (this.categoricalValueColumns.CenterValue && this.categoricalValueColumns.CenterValue.length > 0) {
+        // if (this.categoricalValueColumns.CenterValue && this.categoricalValueColumns.CenterValue.length > 0) {
+        if (this.categoricalValueColumns.CenterValue) {
             const rawVal = this.categoricalValueColumns.CenterValue[0];
             const numVal = rawVal == null || rawVal === "" ? 0 : Number(rawVal);
 

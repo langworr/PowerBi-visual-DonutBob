@@ -59,5 +59,7 @@
   "Visual_UseConditionalFormatting": "Шартты пішімдеуді пайдалану",
   "Visual_Value": "Мән",
   "Visual_Values": "Мәндер",
-  "Visual_YAxis": "Y осі"
+  "Visual_YAxis": "Y осі",
+  "Visual_CenterText": "Орталық мәтін",
+  "Visual_Shape": "Пішін",
 }

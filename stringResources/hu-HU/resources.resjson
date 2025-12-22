@@ -59,5 +59,7 @@
   "Visual_UseConditionalFormatting": "Feltételes formázás használata",
   "Visual_Value": "Érték",
   "Visual_Values": "Értékek",
-  "Visual_YAxis": "Y tengely"
+  "Visual_YAxis": "Y tengely",
+  "Visual_CenterText": "Középső szöveg",
+  "Visual_Shape": "Alakzat"
 }

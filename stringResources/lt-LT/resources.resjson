@@ -59,5 +59,7 @@
   "Visual_UseConditionalFormatting": "Naudoti sąlyginį formatavimą",
   "Visual_Value": "Reikšmė",
   "Visual_Values": "Reikšmės",
-  "Visual_YAxis": "Y ašis"
+  "Visual_YAxis": "Y ašis",
+  "Visual_CenterText": "Centrinis tekstas",
+  "Visual_Shape": "Forma"
 }

@@ -59,5 +59,7 @@
   "Visual_UseConditionalFormatting": "Gebruik voorwaardelijke opmaak",
   "Visual_Value": "Waarde",
   "Visual_Values": "Waarden",
-  "Visual_YAxis": "Y-as"
+  "Visual_YAxis": "Y-as",
+  "Visual_CenterText": "Centrale tekst",
+  "Visual_Shape": "Vorm"
 }

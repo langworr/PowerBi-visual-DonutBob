@@ -59,5 +59,7 @@
   "Visual_UseConditionalFormatting": "Gunakan Pemformatan Bersyarat",
   "Visual_Value": "Nilai",
   "Visual_Values": "Nilai",
-  "Visual_YAxis": "Paksi Y"
+  "Visual_YAxis": "Paksi Y",
+  "Visual_CenterText": "Teks Pusat",
+  "Visual_Shape": "Bentuk"
 }

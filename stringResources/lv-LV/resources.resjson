@@ -59,5 +59,7 @@
   "Visual_UseConditionalFormatting": "Lietot nosacījumformatēšanu",
   "Visual_Value": "Vērtība",
   "Visual_Values": "Vērtības",
-  "Visual_YAxis": "Y ass"
+  "Visual_YAxis": "Y ass",
+  "Visual_CenterText": "Centrālais teksts",
+  "Visual_Shape": "Forma"
 }

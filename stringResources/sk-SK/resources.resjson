@@ -59,5 +59,7 @@
   "Visual_UseConditionalFormatting": "Použiť podmienené formátovanie",
   "Visual_Value": "Hodnota",
   "Visual_Values": "Hodnoty",
-  "Visual_YAxis": "Os y"
+  "Visual_YAxis": "Os y",
+  "Visual_CenterText": "Centrovaný text",
+  "Visual_Shape": "Tvar"
 }

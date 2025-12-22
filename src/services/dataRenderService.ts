@@ -687,7 +687,6 @@ export class DataRenderService {
         return { lineStartPoint, lineBreakPoint, lineEndPoint, direction };
     }
 
-
     private drawLabels(data: d3DonutDataPoint[],
         context: d3Selection<SVGGElement, null, HTMLElement, null>,
         layout: ILabelLayout,

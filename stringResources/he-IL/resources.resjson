@@ -59,5 +59,7 @@
   "Visual_UseConditionalFormatting": "השתמש בעיצוב מותנה",
   "Visual_Value": "ערך",
   "Visual_Values": "ערכים",
-  "Visual_YAxis": "ציר Y"
+  "Visual_YAxis": "ציר Y",
+  "Visual_CenterText": "טקסט מרכזי",
+  "Visual_Shape": "צורה"
 }

@@ -59,5 +59,7 @@
   "Visual_UseConditionalFormatting": "सशर्त स्वरूपण का उपयोग करें",
   "Visual_Value": "मान",
   "Visual_Values": "मान",
-  "Visual_YAxis": "Y अक्ष"
+  "Visual_YAxis": "Y अक्ष",
+  "Visual_CenterText": "केंद्र पाठ",
+  "Visual_Shape": "आकार"
 }

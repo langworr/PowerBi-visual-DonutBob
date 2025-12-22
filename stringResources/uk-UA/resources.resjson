@@ -59,5 +59,7 @@
   "Visual_UseConditionalFormatting": "Використовувати умовне форматування",
   "Visual_Value": "Значення",
   "Visual_Values": "Значення",
-  "Visual_YAxis": "Вісь Y"
+  "Visual_YAxis": "Вісь Y",
+  "Visual_CenterText": "Центральний текст",
+  "Visual_Shape": "Форма"
 }

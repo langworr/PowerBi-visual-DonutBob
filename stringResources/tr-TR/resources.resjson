@@ -59,5 +59,7 @@
   "Visual_UseConditionalFormatting": "Koşullu Biçimlendirme Kullan",
   "Visual_Value": "Değer",
   "Visual_Values": "Değerler",
-  "Visual_YAxis": "Y Ekseni"
+  "Visual_YAxis": "Y Ekseni",
+  "Visual_CenterText": "Merkez Metni",
+  "Visual_Shape": "Şekil"
 }

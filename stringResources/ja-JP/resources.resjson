@@ -59,5 +59,7 @@
   "Visual_UseConditionalFormatting": "条件付き書式を使用する",
   "Visual_Value": "値",
   "Visual_Values": "値",
-  "Visual_YAxis": "Y 軸"
+  "Visual_YAxis": "Y 軸",
+  "Visual_CenterText": "中央テキスト",
+  "Visual_Shape": "形状"
 }

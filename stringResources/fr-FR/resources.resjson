@@ -59,5 +59,7 @@
   "Visual_UseConditionalFormatting": "Utiliser la mise en forme conditionnelle",
   "Visual_Value": "Valeur",
   "Visual_Values": "Valeurs",
-  "Visual_YAxis": "Axe des Y"
+  "Visual_YAxis": "Axe des Y",
+  "Visual_CenterText": "Texte central",
+  "Visual_Shape": "Forme"
 }

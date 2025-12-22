@@ -59,5 +59,7 @@
   "Visual_UseConditionalFormatting": "ใช้การจัดรูปแบบตามเงื่อนไข",
   "Visual_Value": "ค่า",
   "Visual_Values": "มูลค่า",
-  "Visual_YAxis": "แกน Y"
+  "Visual_YAxis": "แกน Y",
+  "Visual_Center_Text": "ข้อความกึ่งกลาง",
+  "Visual_Shape": "รูปร่าง"
 }

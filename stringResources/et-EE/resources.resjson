@@ -59,5 +59,7 @@
   "Visual_UseConditionalFormatting": "Tingimusvormingu kasutamine",
   "Visual_Value": "Väärtus",
   "Visual_Values": "Väärtused",
-  "Visual_YAxis": "Y-telg"
+  "Visual_YAxis": "Y-telg",
+  "Visual_CenterText": "Keskne tekst",
+  "Visual_Shape": "Kujund"
 }

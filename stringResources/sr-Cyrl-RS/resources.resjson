@@ -59,5 +59,7 @@
   "Visual_UseConditionalFormatting": "Коришћење условног обликовања",
   "Visual_Value": "Вредност",
   "Visual_Values": "Вредности",
-  "Visual_YAxis": "Y оса"
+  "Visual_YAxis": "Y оса",
+  "Visual_CenterText": "Центрирај текст",
+  "Visual_Shape": "Облик"
 }

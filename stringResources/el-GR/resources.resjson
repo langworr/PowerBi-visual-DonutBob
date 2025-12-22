@@ -59,5 +59,7 @@
   "Visual_UseConditionalFormatting": "Χρήση μορφοποίησης υπό όρους",
   "Visual_Value": "Τιμή",
   "Visual_Values": "Τιμές",
-  "Visual_YAxis": "Άξονας Υ"
+  "Visual_YAxis": "Άξονας Υ",
+  "Visual_CenterText": "Κείμενο κέντρου",
+  "Visual_Shape": "Σχήμα"
 }

@@ -59,5 +59,7 @@
   "Visual_UseConditionalFormatting": "Koristite uvjetno oblikovanje",
   "Visual_Value": "Vrijednost",
   "Visual_Values": "Vrijednosti",
-  "Visual_YAxis": "Os Y"
+  "Visual_YAxis": "Os Y",
+  "Visual_CenterText": "Središnji tekst",
+  "Visual_Shape": "Oblik"
 }

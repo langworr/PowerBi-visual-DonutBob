@@ -94,7 +94,7 @@ class BaseFontCardSettings extends Card {
             value: TextDefaultSizes.DefaultTextSize,
             options: {
                 minValue: { value: TextDefaultSizes.MinTextSize, type: powerbi.visuals.ValidatorType.Min },
-                maxValue: { value: TextDefaultSizes.MaxTextSize, type: powerbi.visuals.ValidatorType.Max },
+                maxValue: { value: 100, type: powerbi.visuals.ValidatorType.Max },
             }
         }),
         fontFamily: new formattingSettings.FontPicker({
@@ -307,19 +307,20 @@ export class PiesCardSettings extends formattingSettings.SimpleCard {
     }
 }
 
-export class ShapeCardSettings extends formattingSettings.SimpleCard {
+// export class ShapeCardSettings extends formattingSettings.SimpleCard {
+export class ShapeCardSettings extends BaseFontCardSettings {
     asterType = new formattingSettings.ToggleSwitch({
         name: "asterType",
         displayName: "Show as Aster",
         displayNameKey: "Visual_ShowAsAster",
-        value: true,
+        value: false,
     });
 
     innerRadius = new formattingSettings.Slider({
         name: "innerRadius",
         displayName: "Inner Radius",
         displayNameKey: "Visual_InnerRadius",
-        value: 1,
+        value: 60,
         options: {
             minValue: { value: 1, type: ValidatorType.Min },
             maxValue: { value: 100, type: ValidatorType.Max },

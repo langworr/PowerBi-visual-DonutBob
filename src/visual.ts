@@ -62,6 +62,7 @@ import LegendDataPoint = legendInterfaces.LegendDataPoint;
 
 import "../style/donutBob.less";
 import { FormattingSettingsService } from "powerbi-visuals-utils-formattingmodel";
+import { valueFormatter } from "powerbi-visuals-utils-formattingutils";
 import {
     DonutBobObjectNames,
     DonutBobSettingsModel,
@@ -73,8 +74,10 @@ import {
     HtmlSubSelectionHelper,
     SubSelectableDirectEdit as SubSelectableDirectEditAttr,
     SubSelectableDisplayNameAttribute,
-    SubSelectableObjectNameAttribute
+    SubSelectableObjectNameAttribute,
+    SubSelectableTypeAttribute
 } from "powerbi-visuals-utils-onobjectutils"
+import SubSelectionStylesType = powerbi.visuals.SubSelectionStylesType;
 import { visualTitleEditSubSelection } from "./onObject/references";
 import { DonutBobOnObjectService } from "./onObject/donutBobOnObjectService";
 
@@ -246,6 +249,9 @@ export class DonutBob implements IVisual {
             );
             if (!data) {
                 this.clear();
+                if (this.formattingSettings.centerLabel.show.value){
+                    this.renderCenterZero();
+                }
                 return;
             }
 
@@ -401,7 +407,9 @@ export class DonutBob implements IVisual {
 
     private clear(): void {
         this.mainGroupElement.selectAll("path").remove();
-        this.mainGroupElement.select(DonutBob.CenterLabelClass.selectorName).remove();
+        if (!this.formattingSettings.centerLabel.show.value) {
+            this.mainGroupElement.select(DonutBob.CenterLabelClass.selectorName).remove();
+        }
         dataLabelUtils.cleanDataLabels(this.mainLabelsElement, true);
         this.legend.drawLegend({ dataPoints: [] }, this.layout.viewportCopy);
     }
@@ -513,5 +521,58 @@ export class DonutBob implements IVisual {
                 return 0;
         }
     }
+
+    private renderCenterZero(): void {
+        this.mainGroupElement.select(DonutBob.CenterLabelClass.selectorName).remove();
+
+        const centerSettings = this.formattingSettings?.centerLabel;
+        const labelText = centerSettings && centerSettings.centerText && centerSettings.centerText.value
+            ? String(centerSettings.centerText.value)
+            : "";
+
+        // Crea formatter (nessuna format string specifica nel model per centerLabel,
+        // usiamo il formatter di default per rispettare localizzazione/formatting utils)
+        const formatter = valueFormatter.create({ value: 0 });
+        const formattedZero = formatter.format(0);
+
+        // Costruisci array di righe: prima la label (se presente), poi il valore formattato
+        const lines: string[] = [];
+        if (labelText && labelText.length > 0) {
+            lines.push(labelText);
+        }
+        lines.push(formattedZero);
+
+        // Crea l'elemento text e applica gli stili dalle impostazioni
+        const centerText = this.mainGroupElement
+            .append("text")
+            .classed(DonutBob.CenterLabelClass.className, true)
+            .style("line-height", 1)
+            .style("font-size", this.formattingSettings.centerLabel.font.fontSize.value)
+            .style("font-family", this.formattingSettings.centerLabel.font.fontFamily.value || "Segoe UI")
+            .style("font-weight", this.formattingSettings.centerLabel.font.bold.value ? "bold" : "normal")
+            .style("font-style", this.formattingSettings.centerLabel.font.italic.value ? "italic" : "normal")
+            .style("text-decoration", this.formattingSettings.centerLabel.font.underline.value ? "underline" : "none")
+            .style("fill", this.formattingSettings.centerLabel.color.value.value)
+            .attr("text-anchor", "middle");
+
+        // Aggiungi un tspan per ogni riga (stesso comportamento di drawCenterText)
+        lines.forEach((lineContent: string, index: number) => {
+            centerText.append("tspan")
+                .attr("x", 0)
+                .attr("dy", index === 0
+                    ? (lines.length > 1 ? "-0.2em" : "0.35em")
+                    : "1.2em")
+                .text(lineContent);
+        });
+
+        // Applica attributi on-object (come negli altri punti del visual)
+        centerText
+            .attr(SubSelectableObjectNameAttribute, DonutBobObjectNames.CenterLabel.name)
+            .attr(SubSelectableDisplayNameAttribute, this.localizationManager.getDisplayName(DonutBobObjectNames.CenterLabel.displayNameKey))
+            .attr(SubSelectableTypeAttribute, SubSelectionStylesType.Text)
+            .classed(HtmlSubSelectableClass, this.formattingSettings.centerLabel.show.value);
+    }
+
+
 }
 

@@ -59,5 +59,7 @@
   "Visual_UseConditionalFormatting": "Använda villkorsstyrd formatering",
   "Visual_Value": "Värde",
   "Visual_Values": "Värden",
-  "Visual_YAxis": "Y-axeln"
+  "Visual_YAxis": "Y-axeln",
+  "Visual_CenterText": "Centrera text",
+  "Visual_Shape": "Form"
 }

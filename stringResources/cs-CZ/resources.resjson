@@ -59,5 +59,7 @@
   "Visual_UseConditionalFormatting": "Použití podmíněného formátování",
   "Visual_Value": "Hodnota",
   "Visual_Values": "Hodnoty",
-  "Visual_YAxis": "Osa Y"
+  "Visual_YAxis": "Osa Y",
+  "Visual_CenterText": "Středový text",
+  "Visual_Shape": "Tvar"
 }

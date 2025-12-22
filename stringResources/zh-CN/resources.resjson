@@ -59,5 +59,7 @@
   "Visual_UseConditionalFormatting": "使用条件格式",
   "Visual_Value": "值",
   "Visual_Values": "值",
-  "Visual_YAxis": "Y 轴"
+  "Visual_YAxis": "Y 轴",
+  "Visual_CenterText": "中心文本",
+  "Visual_Shape": "形状"
 }
