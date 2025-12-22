@@ -248,41 +248,85 @@ export class DonutBobConverterService {
         return paletteColor;
     }
 
-// Modifica il tipo di ritorno da string a string[]
     private getCenterText(): string[] {
         const parts: string[] = [];
 
-        // 1. Titolo custom (CenterLabel)
-        if (this.settings.centerLabel.show && this.settings.centerLabel.centerText?.value?.trim().length > 0) {
+        if (this.settings?.centerLabel?.centerText?.value?.trim().length > 0) {
             parts.push(this.settings.centerLabel.centerText.value.trim());
         }
 
-        // 2. Valore custom (CenterValue)
-        // if (this.categoricalValueColumns.CenterValue && this.categoricalValueColumns.CenterValue.length > 0) {
-        if (this.categoricalValueColumns.CenterValue) {
-            const rawVal = this.categoricalValueColumns.CenterValue[0];
-            const numVal = rawVal == null || rawVal === "" ? 0 : Number(rawVal);
+        let centerNumericValue: number | null = null;
 
-            // formatter automatico con unità di misura e decimali
-            const formatter = valueFormatter.create({
-                format: valueFormatter.getFormatStringByColumn(this.categoricalColumns.CenterValue?.source, true),
-                precision: this.settings.detailLabels.labelsValuesGroup.precision.value,
-                value: numVal
-            });
-
-            parts.push(formatter.format(numVal));
+        if (this.hasHighlights && this.highlightedDataPoints && this.highlightedDataPoints.length > 0) {
+            centerNumericValue = this.highlightedDataPoints
+                .reduce<number>((acc, dp) => acc + (isNaN(Number(dp.sliceWidth)) ? 0 : Number(dp.sliceWidth)), 0);
         }
 
-        // 3. Fallback: se non c’è nulla, usa il nome della categoria
-        if (parts.length === 0 && this.categoricalColumns.Category) {
+        if (centerNumericValue === null && this.dataView && (this.dataView as any).single && (this.dataView as any).single.value !== undefined) {
+            const singleVal = (this.dataView as any).single.value;
+            centerNumericValue = singleVal == null || singleVal === "" ? 0 : Number(singleVal);
+        }
+
+        if (centerNumericValue === null && this.categoricalValueColumns && this.categoricalValueColumns.CenterValue) {
+            const arr = this.categoricalValueColumns.CenterValue;
+            if (Array.isArray(arr)) {
+                if (arr.length === 1) {
+                    const rawVal = arr[0];
+                    centerNumericValue = rawVal == null || rawVal === "" ? 0 : Number(rawVal);
+                } else {
+                    centerNumericValue = arr.reduce<number>((acc, v) => {
+                        let n = 0;
+                        if (v == null || v === "") {
+                            n = 0;
+                        } else if (typeof v === "number") {
+                            n = v;
+                        } else if (typeof v === "string") {
+                            n = parseFloat(v as string);
+                            if (isNaN(n)) { n = 0; }
+                        } else if (v instanceof Date) {
+                            n = (v as Date).getTime();
+                        } else if (typeof v === "boolean") {
+                            n = v ? 1 : 0;
+                        } else {
+                            const maybe = Number(v as any);
+                            n = isNaN(maybe) ? 0 : maybe;
+                        }
+                        return acc + n;
+                    }, 0);
+                }
+            } else {
+                const rawVal = arr as any;
+                centerNumericValue = rawVal == null || rawVal === "" ? 0 : Number(rawVal);
+            }
+        }
+
+        if (centerNumericValue === null && this.categoricalColumns && this.categoricalColumns.Y && this.categoricalColumns.Y[0] && Array.isArray(this.categoricalColumns.Y[0].values)) {
+            const vals = <any[]>this.categoricalColumns.Y[0].values;
+            centerNumericValue = vals.reduce<number>((acc, v) => {
+                const n = (v == null || v === "") ? 0 : Number(v);
+                return acc + (isNaN(n) ? 0 : n);
+            }, 0);
+        }
+
+        if (centerNumericValue !== null) {
+            const formatColumn = this.categoricalColumns?.CenterValue?.source ?? this.categoricalColumns?.Y?.[0]?.source;
+
+            const formatter = valueFormatter.create({
+                format: formatColumn ? valueFormatter.getFormatStringByColumn(formatColumn, true) : undefined,
+                precision: this.settings?.detailLabels?.labelsValuesGroup?.precision?.value,
+                value: centerNumericValue
+            });
+
+            parts.push(formatter.format(centerNumericValue));
+        }
+
+        if (parts.length === 0 && this.categoricalColumns?.Category) {
             parts.push(this.categoricalColumns.Category.source.displayName);
         }
 
-        // 4. Restituisci l'array puro, SENZA .join(" ")
         return parts;
     }
 
-    // BOB
     public getConvertedData(localizationManager: ILocalizationManager): DonutBobData {
         const categoryValue = this.categoricalValueColumns.Category,
             category: DataViewCategoryColumn = this.categoricalColumns.Category,
